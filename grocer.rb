@@ -2,18 +2,34 @@ require 'pry'
 
 def consolidate_cart(cart)
   # code here
-  hash = {}
-  cart.each do |produce_list|
-    produce_list.each do |produce, price_info|
-      if hash[produce].nil?
-        hash[produce] = price_info.merge({:count => 1})
+  cart.each_with_object({}) do |grocery, hash|
+    #grocery = {"TEMPEH"=>{:price=>3.0, :clearance=>true}}
+    #hash = {}
+    grocery.each do |item, item_info|
+    #item = "TEMPEH"
+    #item_info = {:price=>3.0, :clearance=>true}
+
+      if hash[item]
+        item_info[:count] += 1
       else
-        hash[produce][:count] += 1
+        item_info[:count] = 1
+        hash[item] = item_info
+          binding.pry
       end
-    end
+       end
   end
-  hash
 end
+
+
+#  hash = {}
+#  cart.each do |produce_list|
+#    produce_list.each do |produce, price_info|
+#      if hash[produce].nil?
+#        hash[produce] = price_info.merge({:count => 1})
+#      else
+#        hash[produce][:count] += 1
+#      end
+#    end
 
 def apply_coupons(cart, coupons)
   # code here
@@ -31,7 +47,7 @@ def apply_coupons(cart, coupons)
     #   :clearance => produce[:clearance],
     #   :count => 1}
     # end
-end
+
    end
   end
 end
