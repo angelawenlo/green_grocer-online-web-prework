@@ -13,7 +13,6 @@ def consolidate_cart(cart)
       else
         item_info[:count] = 1
         hash[item] = item_info
-          binding.pry
       end
     end
   end
