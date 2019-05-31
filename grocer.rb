@@ -34,18 +34,7 @@ def apply_coupons(cart, coupons)
   cart
 end
 
-  #   info[:count] = info[:count] - coupon_info[:num]
-   #if hash[produce + "W/COUPON"]
-    # hash[produce + "W/COUPON"][:count] += 1
-   #else
-    # hash[produce + " W/COUPON"] = {
-    #   :price => coupon_info[:cost],
-    #   :clearance => produce[:clearance],
-    #   :count => 1}
-    # end
-  end
-end
-end
+
 
 def apply_clearance(cart)
   # code here
