@@ -21,6 +21,7 @@ end
 
 def apply_coupons(cart, coupons)
   coupons.each do |coupon_info|
+    binding.pry
    if coupon_info[:item] == produce && info[:count] >= coupon_info[:num]
      hash["#{produce} W/COUPON"]
   #   info[:count] = info[:count] - coupon_info[:num]
