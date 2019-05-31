@@ -40,6 +40,7 @@ def apply_clearance(cart)
   cart.each do |item, item_info|
   binding.pry
 end
+end
 
 def checkout(cart, coupons)
   # code here
