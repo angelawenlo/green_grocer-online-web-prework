@@ -29,6 +29,10 @@ def apply_coupons(cart, coupons)
         cart["#{item_name} W/COUPON"] = {:count => 1, :price => coupon_info[:cost], :clearance => cart[name][:clearnace]}
       end
       cart[name][:count] -= coupon_info[:num]
+    end
+  end
+  cart
+end
 
   #   info[:count] = info[:count] - coupon_info[:num]
    #if hash[produce + "W/COUPON"]
