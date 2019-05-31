@@ -53,6 +53,8 @@ def checkout(cart, coupons)
     new_cart.each do |item, item_info|
       total += item_info[:price] * item_info[:count]
     end
+    if total > 100
+      total = totalv* 0.90
     binding.pry
   end
 end
