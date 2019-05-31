@@ -42,6 +42,7 @@ def apply_clearance(cart)
       discount = cart[item][:price] * .20
       cart[item][:price] =
   binding.pry
+end
   end
 end
 
