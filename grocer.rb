@@ -2,45 +2,59 @@ require 'pry'
 
 def consolidate_cart(cart)
   # code here
-  hash = {}
-  cart.each do |produce_list|
-    produce_list.each do |produce, price_info|
-      if hash[produce].nil?
-        hash[produce] = price_info.merge({:count => 1})
+  cart.each_with_object({}) do |grocery, hash|
+    #grocery = {"TEMPEH"=>{:price=>3.0, :clearance=>true}}
+    #hash = {}
+    grocery.each do |item, item_info|
+    #item = "TEMPEH"
+    #item_info = {:price=>3.0, :clearance=>true}
+      if hash[item]
+        item_info[:count] += 1
       else
-        hash[produce][:count] += 1
+        item_info[:count] = 1
+        hash[item] = item_info
       end
     end
   end
-  hash
 end
 
 def apply_coupons(cart, coupons)
-  # code here
-  hash = cart
-  cart.each do |produce, info|
   coupons.each do |coupon_info|
-   if coupon_info[:item] == produce && info[:count] >= coupon_info[:num]
-     hash["#{produce} W/COUPON"]
-  #   info[:count] = info[:count] - coupon_info[:num]
-   #if hash[produce + "W/COUPON"]
-    # hash[produce + "W/COUPON"][:count] += 1
-   #else
-    # hash[produce + " W/COUPON"] = {
-    #   :price => coupon_info[:cost],
-    #   :clearance => produce[:clearance],
-    #   :count => 1}
-    # end
-end
-   end
+    item_name = coupon_info[:item]
+   if cart[item_name] && cart[item_name][:count] >= coupon_info[:num]
+     if cart["#{item_name} W/COUPON"]
+      cart["#{item_name} W/COUPON"][:count] += 1
+      else
+        cart["#{item_name} W/COUPON"] = {:count => 1, :price => coupon_info[:cost], :clearance => cart[item_name][:clearance]}
+      end
+      cart[item_name][:count] -= coupon_info[:num]
+    end
   end
+  cart
 end
-end
+
+
 
 def apply_clearance(cart)
   # code here
+  cart.each do |item, item_info|
+    if item_info[:clearance] == true
+      discount_price = item_info[:price] * 0.80
+      item_info[:price] = discount_price.round(2)
+    end
+  end
+  cart
 end
 
 def checkout(cart, coupons)
   # code here
+  consolidated_cart = consolidate_cart(cart)
+  coupon_items = apply_coupons(consolidated_cart, coupons)
+  new_cart = apply_clearance(coupon_items)
+  total = 0
+    new_cart.each do |item, item_info|
+      total += item_info[:price] * item_info[:count]
+    end
+      total = total * 0.90 if total > 100
+      total
 end
