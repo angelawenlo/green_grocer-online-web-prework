@@ -8,7 +8,6 @@ def consolidate_cart(cart)
     grocery.each do |item, item_info|
     #item = "TEMPEH"
     #item_info = {:price=>3.0, :clearance=>true}
-
       if hash[item]
         item_info[:count] += 1
       else
@@ -16,7 +15,7 @@ def consolidate_cart(cart)
         hash[item] = item_info
           binding.pry
       end
-       end
+    end
   end
 end
 
