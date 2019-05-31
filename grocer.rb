@@ -33,8 +33,6 @@ def apply_coupons(cart, coupons)
     #   :clearance => produce[:clearance],
     #   :count => 1}
     # end
-
-   end
   end
 end
 end
