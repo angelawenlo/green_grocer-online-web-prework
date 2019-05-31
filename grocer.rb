@@ -19,17 +19,6 @@ def consolidate_cart(cart)
   end
 end
 
-
-#  hash = {}
-#  cart.each do |produce_list|
-#    produce_list.each do |produce, price_info|
-#      if hash[produce].nil?
-#        hash[produce] = price_info.merge({:count => 1})
-#      else
-#        hash[produce][:count] += 1
-#      end
-#    end
-
 def apply_coupons(cart, coupons)
   # code here
   hash = cart
