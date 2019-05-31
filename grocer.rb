@@ -20,9 +20,6 @@ def consolidate_cart(cart)
 end
 
 def apply_coupons(cart, coupons)
-  # code here
-  hash = cart
-  cart.each do |produce, info|
   coupons.each do |coupon_info|
    if coupon_info[:item] == produce && info[:count] >= coupon_info[:num]
      hash["#{produce} W/COUPON"]
